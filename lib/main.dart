@@ -14,20 +14,13 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[600],
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            print('you just click me.');
-          },
-          child: Text(
-            'click me.',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'IndieFlower',
-              fontSize: 25.0,
-              fontWeight: FontWeight.bold
+        child: RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(
+              Icons.email
             ),
-          ),
-          color: Colors.lightBlue,
+            label: Text('mail me.'),
+          color: Colors.amber,
         )
       ),
       floatingActionButton: FloatingActionButton(
