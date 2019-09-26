@@ -5,6 +5,29 @@ void main() => runApp(MaterialApp(
   home: QuoteList(),
 ));
 
+
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Tab 1 Layout'),
+      ),
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Tab 2 Layout'),
+      ),
+    );
+  }
+}
+
 class QuoteList extends StatefulWidget {
   @override
   _QuoteListState createState() => _QuoteListState();
@@ -48,24 +71,37 @@ class _QuoteListState extends State<QuoteList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.red[800],
-        title: Text(
-          'Awesome Quotes',
-          style: TextStyle(
-            fontSize: 18.0,
-            fontFamily: 'IndieFlower',
-            fontWeight: FontWeight.bold,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.red[800],
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(icon: Icon(Icons.directions_car)),
+              Tab(icon: Icon(Icons.directions_transit))
+            ],
+          ),
+          title: Text(
+            'Awesome Quotes',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontFamily: 'IndieFlower',
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
-      body: Column(
-        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+        body: TabBarView(
+          children: <Widget>[
+            FirstScreen(),
+            SecondScreen(),
+          ],
+        ),
       ),
     );
   }
 }
 
+// body: Column(children: quotes.map((quote) => quoteTemplate(quote)).toList())
