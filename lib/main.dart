@@ -16,6 +16,36 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: 'phat nguyen', text: 'Lorem Ipsum is simply dummy text.'),
     Quote(author: 'phat nguyen', text: 'Lorem Ipsum is simply dummy text.'),
   ];
+
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(height: 6.0),
+            Text(
+              quote.author,
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey[800],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +63,7 @@ class _QuoteListState extends State<QuoteList> {
         ),
       ),
       body: Column(
-        children: quotes.map((quote) => Text('${quote.text} - ${quote.author}')).toList(),
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
       ),
     );
   }
