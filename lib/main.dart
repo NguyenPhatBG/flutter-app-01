@@ -1,129 +1,38 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: CardID(),
+  home: QuoteList(),
 ));
 
-class CardID extends StatefulWidget {
+class QuoteList extends StatefulWidget {
   @override
-  _CardIDState createState() => _CardIDState();
+  _QuoteListState createState() => _QuoteListState();
 }
 
-class _CardIDState extends State<CardID> {
-  int myLevel = 0;
+class _QuoteListState extends State<QuoteList> {
+  List<String> quotes = [
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+    "When an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Frame
-      backgroundColor: Colors.grey[900],
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.grey[850],
+        centerTitle: true,
+        backgroundColor: Colors.red[800],
         title: Text(
-          'Card ID',
+          'Awesome Quotes',
           style: TextStyle(
-            fontSize: 15.0,
+            fontSize: 18.0,
+            fontFamily: 'IndieFlower',
             fontWeight: FontWeight.bold,
           ),
         ),
-        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/photo-1.jpg'),
-                radius: 40.0,
-              ),
-            ),
-            Divider(
-              height: 90.0,
-              color: Colors.grey[200],
-              thickness: 1.0,
-            ),
-            Text(
-              'NAME',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.grey[400],
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              'NGUYEN VAN PHAT',
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Colors.amberAccent[400],
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.0,
-              ),
-            ),
-            SizedBox(height: 30.0),
-            Text(
-              'LEVEL',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.grey[400],
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              '$myLevel',
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Colors.amberAccent[400],
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.0,
-              ),
-            ),
-            SizedBox(height: 30.0),
-            Row(
-              children: <Widget>[
-                Icon(
-                    Icons.email,
-                    color: Colors.grey[400],
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                  'phatnv@abcsoft.vn',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 30.0),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: RaisedButton(
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
-                ),
-                onPressed: () {
-                  setState(() {
-                    myLevel += 1;
-                  });
-                },
-                color: Colors.red[300],
-                child: Text(
-                  'Press Me.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'IndieFlower',
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Column(
+        children: quotes.map((quote) => Text(quote)).toList(),
       ),
     );
   }
