@@ -4,7 +4,13 @@ void main() => runApp(MaterialApp(
   home: CardID(),
 ));
 
-class CardID extends StatelessWidget {
+class CardID extends StatefulWidget {
+  @override
+  _CardIDState createState() => _CardIDState();
+}
+
+class _CardIDState extends State<CardID> {
+  int myLevel = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold( // Frame
@@ -67,7 +73,7 @@ class CardID extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              '8',
+              '$myLevel',
               style: TextStyle(
                 fontSize: 24.0,
                 color: Colors.amberAccent[400],
@@ -100,7 +106,11 @@ class CardID extends StatelessWidget {
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    myLevel += 1;
+                  });
+                },
                 color: Colors.red[300],
                 child: Text(
                   'Press Me.',
