@@ -1,2 +1,2 @@
 ### flutter-app-01
-https://pub.dev/packages?q=english+word
+https://pub.dev/packages?q=english+word (flutter packages get)
