@@ -1,55 +1,131 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home(),
+  home: CardID(),
 ));
 
-class Home extends StatelessWidget {
+class CardID extends StatefulWidget {
+  @override
+  _CardIDState createState() => _CardIDState();
+}
+
+class _CardIDState extends State<CardID> {
+  int myLevel = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( // Frame
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('My first app'),
+        backgroundColor: Colors.grey[850],
+        title: Text(
+          'Card ID',
+          style: TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.red[600],
       ),
-      body: Row(
-        children: <Widget>[
-          Expanded(
-              child: Image.asset('assets/photo-2.jpg'),
-            flex: 3,
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(30.0),
-              color: Colors.cyan,
-              child: Text('1'),
+      body: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/photo-1.jpg'),
+                radius: 40.0,
+              ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(30.0),
-              color: Colors.pinkAccent,
-              child: Text('2'),
+            Divider(
+              height: 90.0,
+              color: Colors.grey[200],
+              thickness: 1.0,
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(30.0),
-              color: Colors.amber,
-              child: Text('3'),
+            Text(
+              'NAME',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[400],
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2.0,
+              ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text('click'),
-        backgroundColor: Colors.red[600],
+            SizedBox(height: 10.0),
+            Text(
+              'NGUYEN VAN PHAT',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Colors.amberAccent[400],
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.0,
+              ),
+            ),
+            SizedBox(height: 30.0),
+            Text(
+              'LEVEL',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[400],
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2.0,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              '$myLevel',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Colors.amberAccent[400],
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.0,
+              ),
+            ),
+            SizedBox(height: 30.0),
+            Row(
+              children: <Widget>[
+                Icon(
+                    Icons.email,
+                    color: Colors.grey[400],
+                ),
+                SizedBox(width: 10.0),
+                Text(
+                  'phatnv@abcsoft.vn',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.grey[600],
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 30.0),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: RaisedButton(
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                ),
+                onPressed: () {
+                  setState(() {
+                    myLevel += 1;
+                  });
+                },
+                color: Colors.red[300],
+                child: Text(
+                  'Press Me.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'IndieFlower',
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 }
+
