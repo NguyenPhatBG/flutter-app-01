@@ -1,54 +1,84 @@
 import 'package:flutter/material.dart';
+import 'quote.dart';
+import 'quote_card.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home(),
+  home: QuoteList(),
 ));
 
-class Home extends StatelessWidget {
+class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My first app'),
-        centerTitle: true,
-        backgroundColor: Colors.red[600],
+    return Container(
+      child: Center(
+        child: Text('Tab 2 Layout'),
       ),
-      body: Row(
-        children: <Widget>[
-          Expanded(
-              child: Image.asset('assets/photo-2.jpg'),
-            flex: 3,
+    );
+  }
+}
+
+class QuoteList extends StatefulWidget {
+  @override
+  _QuoteListState createState() => _QuoteListState();
+}
+
+class _QuoteListState extends State<QuoteList> {
+  List<Quote> quotes = [
+    Quote(author: 'phat nguyen', text: 'Lorem Ipsum is simply dummy text.'),
+    Quote(author: 'phat nguyen', text: 'Lorem Ipsum is simply dummy text.'),
+    Quote(author: 'phat nguyen', text: 'Lorem Ipsum is simply dummy text.'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.red[800],
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.directions_car),
+                    SizedBox(width: 20.0),
+                    Text('Car'),
+                  ],
+                ),
+              ),
+              Tab(icon: Icon(Icons.directions_transit), text: 'Transit')
+            ],
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(30.0),
-              color: Colors.cyan,
-              child: Text('1'),
+          title: Text(
+            'Awesome Quotes',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontFamily: 'IndieFlower',
+              fontWeight: FontWeight.bold,
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(30.0),
-              color: Colors.pinkAccent,
-              child: Text('2'),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            Container(
+              child: Column(
+                children: quotes.map((quote) => QuoteCard(
+                    quote: quote,
+                    delete: () {
+                        setState(() {
+                          quotes.remove(quote);
+                        });
+                    }
+                )).toList(),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(30.0),
-              color: Colors.amber,
-              child: Text('3'),
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text('click'),
-        backgroundColor: Colors.red[600],
+            SecondScreen(),
+          ],
+        ),
       ),
     );
   }
